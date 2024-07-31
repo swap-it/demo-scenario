@@ -112,7 +112,7 @@ To build the documentation, sphinx and the sphinx rtd theme are required. Both c
 
 Build the documentation:
 
-    cd swap-it-demo-scenario
+    cd swap-it/demo-scenario
     #html
     sphinx-build -M html documentation/source/ documentation/build/html
     #pdf
@@ -124,8 +124,8 @@ Since not all software components required to start the demonstration scenario a
 with all components that can be started with the provided docker-compose.yaml file, The application can be started with:
 
     #clone this repository
-    git clone https://github.com/swap-it/swap-it-demo-scenario
-    cd swap-it-demo-scenario
+    git clone https://github.com/swap-it/demo-scenario
+    cd swap-it/demo-scenario
     docker-compose up
 
 ## Requirements
@@ -142,7 +142,7 @@ for the open62541 SDK is required.
 ## Build the Tutorials
 
     #clone this repository
-    cd swap-it-demo-scenario/Tutorials
+    cd swap-it/demo-scenario/Tutorials
     cd beginner
     #cd intermediate
     #cd advanced
