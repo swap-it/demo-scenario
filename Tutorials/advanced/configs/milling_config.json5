@@ -1,0 +1,49 @@
+/*
+Licensed under the MIT License.
+For details on the licensing terms, see the LICENSE file.
+SPDX-License-Identifier: MIT
+
+Copyright 2023-2024 (c) Fraunhofer IOSB (Author: Florian Düwel)
+*/
+    {
+      //mandatory
+      application_name: "milling_dr1",
+      resource_ip: "host.docker.internal",
+      //resource_ip: "localhost",
+      port: "4071",
+      module_type: "MillingModuleType",
+      module_name: "MillingModule",
+      service_name: "Milling",
+      //optional
+      device_registry:"opc.tcp://localhost:8000",
+      registry_subscriptions: [
+        {
+          object:"State"
+        },
+        {
+          object:"Capabilities"
+        }
+      ],
+      Capabilities: [
+        {
+          variable_name: "test numeric",
+          variable_type: "numeric",
+          variable_value: "120",
+          relational_operator: "Smaller"
+        },
+        {
+          variable_name: "test string",
+          variable_type: "string",
+          variable_value: "test string",
+          relational_operator: "EqualString"
+        },
+        {
+          variable_name: "test boolean",
+          variable_type: "bool",
+          variable_value: "false",
+          relational_operator: "IsFalse"
+        }
+      ],
+      channels:"100",
+      sessions:"100"
+    }
