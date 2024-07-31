@@ -1,0 +1,15 @@
+/*
+Licensed under the MIT License.
+For details on the licensing terms, see the LICENSE file.
+SPDX-License-Identifier: MIT
+
+Copyright 2023-2024 (c) Fraunhofer IOSB (Author: Florian Düwel)
+*/
+    {
+      application_name: "coating_dr1",
+      resource_ip: "localhost",
+      port: "4842",
+      module_type: "CoatingModuleType",
+      module_name: "CoatingModule",
+      service_name: "Coating"
+    }

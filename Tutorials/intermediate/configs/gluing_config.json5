@@ -1,0 +1,15 @@
+/*
+Licensed under the MIT License.
+For details on the licensing terms, see the LICENSE file.
+SPDX-License-Identifier: MIT
+
+Copyright 2023-2024 (c) Fraunhofer IOSB (Author: Florian Düwel)
+*/
+{
+  application_name: "gluing_dr1",
+  resource_ip: "localhost",
+  port: "4841",
+  module_type: "GluingModuleType",
+  module_name: "GluingModule",
+  service_name: "Gluing"
+}
