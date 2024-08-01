@@ -81,7 +81,7 @@ SWAP-IT Software
 The application consists of a set of loosely coupled software components. The figure below depicts all software components that are currently available as open source projects, or will be published as open source projects within 2024.
 The development status and the interaction of these components is shown in the figure below.
 
-.. figure:: /images/img_1.PNG
+.. figure:: /images/img_1.png
    :alt: Development Status SWAP-IT Software Components
    :width: 100%
 
