@@ -26,7 +26,7 @@ This docker-compose project features the SWAP-IT dashboard. To monitor and start
 
 .. code-block:: c
 
-    http://localhost:5000
+    http://localhost:8080
 
 after the docker-compose project is started.
 
