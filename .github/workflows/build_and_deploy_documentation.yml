@@ -18,9 +18,6 @@ jobs:
       - name: Build and deploy documentation html
         run: |
           sphinx-build -M html documentation/source documentation/build
-      - name: Build and deploy documentation pdf
-        run: |
-          sphinx-build -b pdf documentation/source/ documentation/build/
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push'}}
