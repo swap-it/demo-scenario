@@ -4,9 +4,6 @@
 #
 #Copyright 2023-2024 (c) Fraunhofer IOSB (Author: Florian Düwel)
 
-
-version: "3.9"
-
 services:
   Device_Registry:
     image: ghcr.io/swap-it/demo-scenario/device_registry:latest
