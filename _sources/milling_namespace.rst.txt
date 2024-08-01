@@ -1,0 +1,67 @@
+..
+    Licensed under the MIT License.
+    For details on the licensing terms, see the LICENSE file.
+    SPDX-License-Identifier: MIT
+
+    Copyright 2023-2024 (c) Fraunhofer IOSB (Author: Florian Düwel)
+
+
+
+=================
+Milling Namespace
+=================
+
+For the milling information model, it is required to define a milling specific subtype of the module type, a ServiceFinishedEvent and a corresponding Milling OPC UA method.
+
+.. code-block:: xml
+
+    <?xml version="1.0" encoding="utf-8" ?>
+    <ModelDesign
+            xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:ua="http://opcfoundation.org/UA/"
+            xmlns:cmn="http://common.swap.fraunhofer.de"
+            xmlns:pt="http://swap.demo.scenario.fraunhofer.de"
+            xmlns:ml="http://swap.demo.scenario.milling.fraunhofer.de"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            TargetNamespace="http://swap.demo.scenario.milling.fraunhofer.de"
+            TargetXmlNamespace="http://swap.demo.scenario.milling.fraunhofer.de"
+            TargetVersion="1.00.0"
+            TargetPublicationDate="2024-01-01T00:00:00Z"
+            xmlns="http://opcfoundation.org/UA/ModelDesign.xsd">
+
+        <Namespaces>
+            <Namespace Name="Milling" Prefix="SWAP.Fraunhofer.Demo.Scenario.Milling.Model" XmlNamespace="http://swap.demo.scenario.milling.fraunhofer.de/Types.xsd" XmlPrefix="ml">http://swap.demo.scenario.milling.fraunhofer.de</Namespace>
+            <Namespace Name="Demo" Prefix="SWAP.Fraunhofer.Demo.Scenario.Model" XmlNamespace="http://swap.demo.scenario.fraunhofer.de/Types.xsd" XmlPrefix="pt" FilePath="DemoScenarioTypes.ModelDesign">http://swap.demo.scenario.fraunhofer.de</Namespace>
+            <!-- set dependency to the common namespace -->
+            <Namespace Name="Common" Prefix="SWAP.Fraunhofer.Common.Model" XmlNamespace="http://common.swap.fraunhofer.de/Types.xsd" XmlPrefix="cmn" FilePath="CommonModelDesign">http://common.swap.fraunhofer.de</Namespace>
+            <Namespace Name="OpcUa" Prefix="Opc.Ua" Version="1.03.00" PublicationDate="2013-12-02T00:00:00Z" InternalPrefix="Opc.Ua.Server" XmlNamespace="http://opcfoundation.org/UA/2008/02/Types.xsd" XmlPrefix="ua">http://opcfoundation.org/UA/</Namespace>
+        </Namespaces>
+
+        <ObjectType SymbolicName="ml:Milling" BaseType="cmn:ServiceFinishedEventType">
+            <Children>
+                <Property SymbolicName="ml:order" DataType="pt:SWAP_Order" ModellingRule="Mandatory" />
+            </Children>
+        </ObjectType>
+
+        <ObjectType SymbolicName="ml:ServiceObjectType" BaseType="cmn:ServiceObjectType">
+            <Children>
+                <Method SymbolicName="cmn:Milling" TypeDefinition="ml:MillingMethodType"/>
+            </Children>
+        </ObjectType>
+
+        <ObjectType SymbolicName="ml:MillingModuleType" BaseType="cmn:ModuleType">
+            <Children>
+                <Object SymbolicName="cmn:Services" TypeDefinition="ml:ServiceObjectType"/>
+            </Children>
+        </ObjectType>
+
+        <Method SymbolicName="ml:MillingMethodType">
+            <InputArguments>
+                <Argument Name="order" DataType="pt:SWAP_Order" ModellingRule="Mandatory"/>
+            </InputArguments>
+            <OutputArguments>
+                <Argument Name="Results" DataType="cmn:ServiceExecutionAsyncResultDataType" ModellingRule="Mandatory"/>
+            </OutputArguments>
+        </Method>
+    </ModelDesign>

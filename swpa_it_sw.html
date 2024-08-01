@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SWAP-IT Software Modules &mdash; SWAP-IT Demonstration Scenario 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Mounting Namespace" href="mounting_namespace.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SWAP-IT Demonstration Scenario
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Demonstration Scenario Application</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SWAP-IT Software Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#process-agent">Process Agent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#resource-assignment">Resource Assignment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#registry-module">Registry Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-information-model">Common Information Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#order-registry">Order Registry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assignment-agent">Assignment Agent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#open62541-server-template">open62541 Server Template</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#swap-it-dashboard">SWAP-IT Dashboard</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">How-To-Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related-Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SWAP-IT Demonstration Scenario</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">SWAP-IT Software Modules</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/swpa_it_sw.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="swap-it-software-modules">
+<span id="id1"></span><h1>SWAP-IT Software Modules<a class="headerlink" href="#swap-it-software-modules" title="Link to this heading"></a></h1>
+<p>In the following, a short introduction is given into the SWAP-IT software modules that are used within the Demonstration Scenario application.
+The <em>Order Registry</em> and the <em>SWAP-IT Dashboard</em> are used to mock an Enterprise Resource Planning ERP system. Here, the <em>Order Registry</em> allows users to place
+an order. For this order, a new <em>Process Agent</em> is spawned, who then executes the specified sequence of process steps.
+The <em>SWAP-IT Dashboard</em> is connected to the <em>Production Flow Description Language - Scheduler (PFDL-Scheduler)</em> and displays the visual representation during its execution,
+as well as additional information such as the start and the finish of services or tasks.
+A <em>Process Agent</em> consist of an
+<em>Execution Engine</em> and a <em>PFDL-Scheduler</em>. <em>Process Agents</em> are created for each individual PFDL (Production Flow Description Language) execution. The field level resources
+represent physical resources in an industrial production environment. These resources have to be mapped to an OPC UA server to become compatible with the <em>SWAP-IT Software Components</em>.
+For such servers,
+the <em>Common Information Model</em> is required. In case of an implementation with the open62541 OPC UA SDK, it is highly
+recommended to use the <a class="reference external" href="https://github.com/FraunhoferIOSB/swap-it-open62541-server-template">swap-it-open62541-server-template</a>. Additional information about each software component can be found in the following sections.</p>
+<section id="process-agent">
+<h2>Process Agent<a class="headerlink" href="#process-agent" title="Link to this heading"></a></h2>
+<p>The heart of the SWAP-IT software components is the process agent, consisting of a PFDL-Scheduler and an Execution Engine. Each process agent receives a process description in a PFDL format. The PFDL is a domain specific language, from which the PFDL-Scheduler generates and executes a petri net. Here, the Execution Engine serves as an
+interface between the
+scheduler and the Field-Level-Devices. Their communication is accomplished with OPC UA. Since the PFDL description allows to define services to be executed on the shop floor, the Execution Engine requires a functionality to identify resources, which are able to
+execute the scheduled service. For more information about the Execution Engine’s resource assignment have a look at section <a class="reference internal" href="#resource-assignment">Resource Assignment</a>. In addition, the Execution Engine needs a generic way to execute services.
+For this, a standardized information model is provided, which has to be included into all servers. This information model is called <a class="reference external" href="https://common-information-model-swap-entwicklungen-swap-5c35379a702364.pages.fraunhofer.de/">Common Information Model</a> and defines how assets
+must provide information about themselves, such as callable services, states and capabilities.</p>
+<section id="resource-assignment">
+<span id="id2"></span><h3>Resource Assignment<a class="headerlink" href="#resource-assignment" title="Link to this heading"></a></h3>
+<p>The process agent has two possibilities to assign services to resources. First, the resource can either be specified statically
+in the PFDL description by defining a ResourceAssignment structure and providing it as service input.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ResourceAssignment</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;job_resource&quot;</span><span class="o">:</span><span class="s">&quot;opc.tcp://0.0.0.0:4840&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Second, the process agent dynamically searches for a resource in the Device Registry. For this to be accomplished, a resource has to register itself in the Device Registry and thus, becomes visible to the system. Next, the Process Agent’s Execution Engine
+filters a list of possible resources. This list is then transmitted to an Assignment Agent, who assigns the job to one particular resource from this list. The default behavior of the assigment agent is to assign the job to the resource with the fewest
+elements in its queue, independent of any processing times or costs. The default behavior ensures that each process is completely executed, however to integrate
+more complex assignment strategies, custom Assignment Agents can be defined and integrated into applications. While the Assignment Agent is currently defined as an individual entity, the default Assignment Agent will be included into the Execution Engine. Consequently,
+there will be no more need for such an agent, in case that the default behavior is desired. However, for custom assignment behavior, custom assignment agents can be integrated.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/interaction.PNG"><img alt="Resource Assignment with assignment agent" src="_images/interaction.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+</section>
+<section id="registry-module">
+<h2>Registry Module<a class="headerlink" href="#registry-module" title="Link to this heading"></a></h2>
+<p>The Registry Module is used to make resources, represented by the resource’s server, available to the system. In this context, assignment agents search the device registry for resource that are able to execute particular services.
+Resources are only visible to the assignment agents and thus, make themself available to execute PFDL Services, after they registered themself in a device registry.
+In addition, the Device Registry has a build-in functionality to filter suitable resources for a service execution based on capabilities of a resource.
+A scenario for such a filtering is for instance the assignment of a transport task to an autonomous-guided-vehicle (AGV) where each AGV can carry a maximum payload.
+Now the Execution Engine can call the Device Registry’s Filter Agent Method to
+receive a list of all AGVs that are able to carry a concrete product. Here, the Device Registry considers the product’s weight and the resources maximum payload
+to filter suitable resources.</p>
+</section>
+<section id="common-information-model">
+<h2>Common Information Model<a class="headerlink" href="#common-information-model" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://common-information-model-swap-entwicklungen-swap-5c35379a702364.pages.fraunhofer.de/">Common Information Model</a> needs to be included into an OPC UA Server so that an Process Agent can execute a specified service.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/moduletype.PNG"><img alt="Module Type in the common information model" src="_images/moduletype.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+<section id="order-registry">
+<h2>Order Registry<a class="headerlink" href="#order-registry" title="Link to this heading"></a></h2>
+<p>The Order Registry is a module that can be compared to an ERP (Enterprise Resource Planning) system, since it enables the start of new production processes by spawning process agents.</p>
+</section>
+<section id="assignment-agent">
+<h2>Assignment Agent<a class="headerlink" href="#assignment-agent" title="Link to this heading"></a></h2>
+<p>Class of agents that interact with process agents and registry modules to assign services to resources. in this context, an assignment agent is triggered by a process agent to find a resource for a service to be executed. Afterwards the assignment agent connects to
+the device registry to filter a list of suitable agents. From this list, the agent assigns the service to one particular resource, based on a custom assignment strategy. Afterwards, it returns the selected resource to the process agent,
+who then initiates the service execution on the returned resource.</p>
+</section>
+<section id="open62541-server-template">
+<h2>open62541 Server Template<a class="headerlink" href="#open62541-server-template" title="Link to this heading"></a></h2>
+<p>The <a class="reference external" href="https://github.com/FraunhoferIOSB/swap-it-open62541-server-template">open62541 swap server template</a> simplifies the process of making a open62541 OPC UA server compatible with the software modules, so that the server can provide a service that can be invoked by a process agent. The template provides a single function UA_Server_swap_it to instantiate
+a module specific Subtype of the Module Type. Besides, it provides functionalities for Field-Level-Devices
+to register and unregister themselves in a Registry Module, and a queue handler that provides the functionality to add and remove elements from a queue.</p>
+</section>
+<section id="swap-it-dashboard">
+<h2>SWAP-IT Dashboard<a class="headerlink" href="#swap-it-dashboard" title="Link to this heading"></a></h2>
+<p>The SWAP-IT dashboard is a tool that was initially created to monitor processes that are driven by the PFDL-Scheduler. However, its basic functionality will be extended so that new process agents can be spawned within the
+Demonstration Scenario environment.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/dashboard.PNG"><img alt="SWAP-IT Dashboard" src="_images/dashboard.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mounting_namespace.html" class="btn btn-neutral float-left" title="Mounting Namespace" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Fraunhofer IOSB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

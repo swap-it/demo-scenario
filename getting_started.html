@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; SWAP-IT Demonstration Scenario 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Requirements and Installation" href="requ.html" />
+    <link rel="prev" title="SWAP-IT Software Modules" href="swpa_it_sw.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SWAP-IT Demonstration Scenario
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Demonstration Scenario Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swpa_it_sw.html">SWAP-IT Software Modules</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="requ.html">Requirements and Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html">Tutorials</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">How-To-Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related-Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SWAP-IT Demonstration Scenario</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h1>
+<p>The next sections should provide a short introduction into the SWAP-IT software components by demonstrating its usage in a set of tutorials for beginners, intermediate- and
+advanced users. The Demonstration Scenario is rebuilt step by step over the different difficulty levels.
+The code of each tutorial is provided within the Tutorials directory of the Git Repository (<a class="reference external" href="https://github.com/swap-it/demo-scenario">https://github.com/swap-it/demo-scenario</a>).
+Please ensure to meet the requirements specified in section <a class="reference internal" href="requ.html#requirements-and-installation"><span class="std std-ref">Requirements and Installation</span></a>.
+The corresponding executable of each tutorial can be build and started with:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/swap-it/demo-scenario.git</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">demo</span><span class="o">-</span><span class="n">scenario</span><span class="o">/</span><span class="n">Tutorials</span><span class="o">/</span><span class="n">beginner</span>
+<span class="cp">#cd demo-scenario/Tutorials/intermediate</span>
+<span class="cp">#cd demo-scenario/Tutorials/advanced</span>
+<span class="n">mkdir</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">build</span>
+<span class="n">cmake</span><span class="w"> </span><span class="p">..</span>
+<span class="n">make</span>
+<span class="p">.</span><span class="o">/</span><span class="n">beginner_tutorial</span>
+<span class="cp">#./intermediate_tutorial</span>
+<span class="cp">#./swap_server</span>
+</pre></div>
+</div>
+<p>Besides the tutorials, a set of docker containers whereat each of them contains a software implementation of a SWAP-IT module can be executed for an initial impression of the functionality. All containers are linked together in a docker compose project
+that can be started with:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/swap-it/demo-scenario</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">demo</span><span class="o">-</span><span class="n">scenario</span>
+<span class="n">docker</span><span class="o">-</span><span class="n">composed</span><span class="w"> </span><span class="n">up</span>
+</pre></div>
+</div>
+<p>The executed process is mounted into the docker-container of the execution-engine and the default process is the process of the advanced tutorial. Besides, the process can be customized
+by either using the intermediate.pfdl or the beginner.pfdl files. To change the process, adjust line 55 of the docker-compose.yaml file, located in the demo-scenario directory:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="mi">54</span><span class="w">     </span><span class="n">volumes</span><span class="o">:</span>
+<span class="mi">55</span><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="n">pfdl</span><span class="o">/</span><span class="n">advanced</span><span class="p">.</span><span class="n">pfdl</span><span class="o">:/</span><span class="n">execution</span><span class="o">-</span><span class="n">engine</span><span class="o">/</span><span class="n">PFDL_Examples</span><span class="o">/</span><span class="n">temp</span><span class="p">.</span><span class="n">pfdl</span>
+<span class="cp">#replace ./pfdl/advanced.pfdl with a path to a custom pfdl description</span>
+<span class="mi">54</span><span class="w">     </span><span class="n">volumes</span><span class="o">:</span>
+<span class="mi">55</span><span class="w">      </span><span class="o">-</span><span class="w"> </span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">custom</span><span class="o">-</span><span class="n">pfdl</span><span class="o">:/</span><span class="n">execution</span><span class="o">-</span><span class="n">engine</span><span class="o">/</span><span class="n">PFDL_Examples</span><span class="o">/</span><span class="n">temp</span><span class="p">.</span><span class="n">pfdl</span>
+</pre></div>
+</div>
+<p>While the kind and the number of the shop floor resources is fixed, customized processes can included by defining custom .pfdl files and mounting them into the project
+by setting the path to the file, as described above. However, it has to be considered, that each Service call requires a SWAP_Order parameter as input argument.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="requ.html">Requirements and Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="beginner.html">Beginner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intermediate.html">Intermediate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="swpa_it_sw.html" class="btn btn-neutral float-left" title="SWAP-IT Software Modules" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="requ.html" class="btn btn-neutral float-right" title="Requirements and Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Fraunhofer IOSB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
