@@ -52,9 +52,8 @@ The required PFDL is defined as:
     #so it does not have to be defined
     #within the OPC UA namespace for the warehouse server
     Struct ResourceAssignment
-    {
         job_resource:string
-    }
+    End
 
     #production Task the defines the overall process
     Task productionTask
