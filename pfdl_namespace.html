@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PFDL Parameter Namespace &mdash; SWAP-IT Demonstration Scenario 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Warehouse Namespace" href="warehouse_namespace.html" />
+    <link rel="prev" title="Demonstration Scenario Application" href="intro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SWAP-IT Demonstration Scenario
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="intro.html">Demonstration Scenario Application</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html#production-of-industrial-traffic-lights">Production of Industrial Traffic Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="intro.html#shop-floor-configuration">Shop Floor Configuration</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="intro.html#information-models">Information Models</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PFDL Parameter Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warehouse_namespace.html">Warehouse Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coating_namespace.html">Coating Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="milling_namespace.html">Milling Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gluing_namespace.html">Gluing Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mounting_namespace.html">Mounting Namespace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="swpa_it_sw.html">SWAP-IT Software Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">How-To-Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related-Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SWAP-IT Demonstration Scenario</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="intro.html">Demonstration Scenario Application</a></li>
+      <li class="breadcrumb-item active">PFDL Parameter Namespace</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pfdl_namespace.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pfdl-parameter-namespace">
+<h1>PFDL Parameter Namespace<a class="headerlink" href="#pfdl-parameter-namespace" title="Link to this heading"></a></h1>
+<p>Since many structures from the PFDL definition have to be provided to many OPC UA servers, it is highly recommend to define an
+individual namespace for these structures. This ModelDesign.xml file
+can then be used as input for the <a class="reference external" href="https://github.com/OPCFoundation/UA-ModelCompiler">UA-ModelCompiler</a> to generate the corresponding
+Nodeset2.xml file. From the Nodeset2.xml file, the OPC UA server can import the corresponding namespace.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+<span class="nt">&lt;ModelDesign</span>
+<span class="w">    </span><span class="na">xmlns:uax=</span><span class="s">&quot;http://opcfoundation.org/UA/2008/02/Types.xsd&quot;</span>
+<span class="w">    </span><span class="na">xmlns:xsi=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+<span class="w">    </span><span class="na">xmlns:ua=</span><span class="s">&quot;http://opcfoundation.org/UA/&quot;</span>
+<span class="w">    </span><span class="na">xmlns:pt=</span><span class="s">&quot;http://swap.demo.scenario.fraunhofer.de&quot;</span>
+<span class="w">    </span><span class="na">xmlns:xsd=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span>
+<span class="w">    </span><span class="na">TargetNamespace=</span><span class="s">&quot;http://swap.demo.scenario.fraunhofer.de&quot;</span>
+<span class="w">    </span><span class="na">TargetXmlNamespace=</span><span class="s">&quot;http://swap.demo.scenario.fraunhofer.de&quot;</span>
+<span class="w">    </span><span class="na">TargetVersion=</span><span class="s">&quot;1.00.0&quot;</span>
+<span class="w">    </span><span class="na">TargetPublicationDate=</span><span class="s">&quot;2024-01-01T00:00:00Z&quot;</span>
+<span class="w">    </span><span class="na">xmlns=</span><span class="s">&quot;http://opcfoundation.org/UA/ModelDesign.xsd&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- set dependencies to other namespaces. In this case only Namespace Zero that provides build-in OPC UA Types is required--&gt;</span>
+<span class="w">    </span><span class="nt">&lt;Namespaces&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Namespace</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;Demo&quot;</span><span class="w"> </span><span class="na">Prefix=</span><span class="s">&quot;SWAP.Fraunhofer.Demo.Scenario.Model&quot;</span><span class="w"> </span><span class="na">XmlNamespace=</span><span class="s">&quot;http://swap.demo.scenario.fraunhofer.de/Types.xsd&quot;</span><span class="w"> </span><span class="na">XmlPrefix=</span><span class="s">&quot;pt&quot;</span><span class="nt">&gt;</span>http://swap.demo.scenario.fraunhofer.de<span class="nt">&lt;/Namespace&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Namespace</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;OpcUa&quot;</span><span class="w"> </span><span class="na">Prefix=</span><span class="s">&quot;Opc.Ua&quot;</span><span class="w"> </span><span class="na">Version=</span><span class="s">&quot;1.03.00&quot;</span><span class="w"> </span><span class="na">PublicationDate=</span><span class="s">&quot;2013-12-02T00:00:00Z&quot;</span><span class="w"> </span><span class="na">InternalPrefix=</span><span class="s">&quot;Opc.Ua.Server&quot;</span><span class="w"> </span><span class="na">XmlNamespace=</span><span class="s">&quot;http://opcfoundation.org/UA/2008/02/Types.xsd&quot;</span><span class="w"> </span><span class="na">XmlPrefix=</span><span class="s">&quot;ua&quot;</span><span class="nt">&gt;</span>http://opcfoundation.org/UA/<span class="nt">&lt;/Namespace&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/Namespaces&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- custom data types that correspond to the structures defined within the PFDL --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;DataType</span><span class="w"> </span><span class="na">SymbolicName=</span><span class="s">&quot;pt:Stand_Segment&quot;</span><span class="w"> </span><span class="na">BaseType=</span><span class="s">&quot;ua:Structure&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Fields&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;stand_shape&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;stand_height&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;stand_id&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Fields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DataType&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;DataType</span><span class="w"> </span><span class="na">SymbolicName=</span><span class="s">&quot;pt:Light_Segment&quot;</span><span class="w"> </span><span class="na">BaseType=</span><span class="s">&quot;ua:Structure&quot;</span><span class="w"> </span><span class="na">ValueRank=</span><span class="s">&quot;Any&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Fields&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;color&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;diameter&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;segment_id&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Fields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DataType&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;DataType</span><span class="w"> </span><span class="na">SymbolicName=</span><span class="s">&quot;pt:Blank&quot;</span><span class="w"> </span><span class="na">BaseType=</span><span class="s">&quot;ua:Structure&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Fields&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;blank_type&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;blank_id&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:String&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;part_id&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Fields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DataType&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;DataType</span><span class="w"> </span><span class="na">SymbolicName=</span><span class="s">&quot;pt:Raw_Material&quot;</span><span class="w"> </span><span class="na">BaseType=</span><span class="s">&quot;ua:Structure&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Fields&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;blank_type&quot;</span><span class="w"> </span><span class="na">ValueRank=</span><span class="s">&quot;Array&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;pt:Blank&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;blank_number&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Fields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DataType&gt;</span>
+
+<span class="w">    </span><span class="cm">&lt;!-- define the SWAP_Order data type --&gt;</span>
+<span class="w">    </span><span class="nt">&lt;DataType</span><span class="w"> </span><span class="na">SymbolicName=</span><span class="s">&quot;pt:SWAP_Order&quot;</span><span class="w"> </span><span class="na">BaseType=</span><span class="s">&quot;ua:Structure&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;Fields&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;order_id&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;stand&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;pt:Stand_Segment&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;segments&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;pt:Light_Segment&quot;</span><span class="w"> </span><span class="na">ValueRank=</span><span class="s">&quot;Array&quot;</span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;Field</span><span class="w"> </span><span class="na">Name=</span><span class="s">&quot;number_light_segments&quot;</span><span class="w"> </span><span class="na">DataType=</span><span class="s">&quot;ua:Double&quot;</span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/Fields&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/DataType&gt;</span>
+
+<span class="nt">&lt;/ModelDesign&gt;</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Demonstration Scenario Application" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="warehouse_namespace.html" class="btn btn-neutral float-right" title="Warehouse Namespace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Fraunhofer IOSB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intermediate &mdash; SWAP-IT Demonstration Scenario 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Advanced" href="advanced.html" />
+    <link rel="prev" title="Beginner" href="beginner.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SWAP-IT Demonstration Scenario
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Demonstration Scenario Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="swpa_it_sw.html">SWAP-IT Software Modules</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="requ.html">Requirements and Installation</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="tutorial.html">Tutorials</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="beginner.html">Beginner</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Intermediate</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#intermediate-writing-custom-pfdl-files">Intermediate: Writing custom PFDL files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#intermediate-building-resource-specific-information-models">Intermediate: Building Resource-specific Information Models</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pfdl_namespace.html">PFDL Parameter Namespace</a></li>
+<li class="toctree-l5"><a class="reference internal" href="warehouse_namespace.html">Warehouse Namespace</a></li>
+<li class="toctree-l5"><a class="reference internal" href="coating_namespace.html">Coating Namespace</a></li>
+<li class="toctree-l5"><a class="reference internal" href="gluing_namespace.html">Gluing Namespace</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#intermediate-build-custom-opc-ua-servers">Intermediate: Build custom OPC UA Servers</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#intermediate-writing-a-json-configuration-file">Intermediate: Writing a JSON-configuration file</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#warehouse-configuration">Warehouse Configuration</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#coating-configuration">Coating Configuration</a></li>
+<li class="toctree-l6"><a class="reference internal" href="#gluing-configuration">Gluing Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#intermediate-cmake-configuration">Intermediate: CMake Configuration</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#intermediate-build-server">Intermediate: Build Server</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#intermediate-build-the-server-executable">Intermediate: Build the Server Executable</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#intermediate-execute-the-pfdl-with-a-process-agent">Intermediate: Execute the PFDL with a Process Agent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html">Advanced</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">How-To-Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related-Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SWAP-IT Demonstration Scenario</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="getting_started.html">Getting Started</a></li>
+          <li class="breadcrumb-item"><a href="tutorial.html">Tutorials</a></li>
+      <li class="breadcrumb-item active">Intermediate</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intermediate.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intermediate">
+<h1>Intermediate<a class="headerlink" href="#intermediate" title="Link to this heading"></a></h1>
+<p>This tutorial extends the beginners tutorial by not only executing the GetPartsFromWarehouse service, but also
+the Coating and the Gluing service. As these
+services are performed on a set of parts of the traffic light, the PFDL description is
+extended with a Parallel Loop for the GetPartsFromWarehouse- and Coating service, and a Counting Loop
+for the Gluing service.</p>
+<section id="intermediate-writing-custom-pfdl-files">
+<h2>Intermediate: Writing custom PFDL files<a class="headerlink" href="#intermediate-writing-custom-pfdl-files" title="Link to this heading"></a></h2>
+<p>Since all required PFDL structures were already defined in the beginners tutorial (<a class="reference internal" href="beginner.html#beginner-writing-custom-pfdl-files"><span class="std std-ref">Beginner: Writing custom PFDL files</span></a>),
+only the productionTask task is extended with the additional services and conditions.
+To have a better structure inside the PFDL, additional tasks are defined around these services. First, the manufacture_light_segments task is executed from the productionTask and contains and invokes the an additional task, the manufacture_light_segment task.
+Within the manufacture_light_segment task a part is taken from the warehouse and coated in the color that is specified within the corresponding Light_Segment structure. To ensure that all light_segment are available when staring the
+Gluing service. A Parallel Loop is defined in which each of the manufacture_light_segment tasks is executed. The use of the Parallel Loop has two reasons, first the loop enables a flexible number of iterations over the corresponding task,
+and second, the parallel condition ensures that the process does not transition into the Gluing service, before all light segments finished the previous manufacturing step. The number of iterations is determined by the number_light_segments field of the
+SWAP_Order structure. Since the next step glues all light segments together, a counting loop is used in which the Gluing service is executed. This counting loop is also based on the number_light_segments field of the SWAP_Order structure.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Struct</span> <span class="n">SWAP_Order</span>
+    <span class="n">order_id</span><span class="p">:</span><span class="n">number</span>
+    <span class="n">stand</span><span class="p">:</span><span class="n">Stand_Segment</span>
+    <span class="n">segments</span><span class="p">:</span> <span class="n">Light_Segment</span><span class="p">[]</span>
+    <span class="n">number_light_segments</span><span class="p">:</span> <span class="n">number</span>
+<span class="n">End</span>
+
+<span class="n">Struct</span> <span class="n">Stand_Segment</span>
+    <span class="n">stand_shape</span><span class="p">:</span><span class="n">string</span>
+    <span class="n">stand_height</span><span class="p">:</span><span class="n">number</span>
+    <span class="n">stand_id</span><span class="p">:</span><span class="n">string</span>
+<span class="n">End</span>
+
+<span class="n">Struct</span> <span class="n">Light_Segment</span>
+    <span class="n">color</span><span class="p">:</span> <span class="n">string</span>
+    <span class="n">diameter</span><span class="p">:</span> <span class="n">number</span>
+    <span class="n">segment_id</span><span class="p">:</span><span class="n">string</span>
+<span class="n">End</span>
+
+<span class="c1">#structure to statically assign the service to a resource</span>
+<span class="c1">#this structure is only uses by the execution engine internally,</span>
+<span class="c1">#so it does not have to be defined</span>
+<span class="c1">#within OPC UA namespace for the warehouse server</span>
+<span class="n">Struct</span> <span class="n">ResourceAssignment</span>
+        <span class="n">job_resource</span><span class="p">:</span><span class="n">string</span>
+<span class="n">End</span>
+
+<span class="n">Task</span> <span class="n">productionTask</span>
+        <span class="n">manufacture_light_segments</span>
+            <span class="n">In</span>
+                <span class="n">SWAP_Order</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;order_id&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+                    <span class="s2">&quot;stand&quot;</span><span class="p">:{</span>
+                        <span class="s2">&quot;stand_shape&quot;</span><span class="p">:</span><span class="s2">&quot;plate&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;stand_height&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                        <span class="s2">&quot;stand_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;segments&quot;</span><span class="p">:</span>
+                    <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;diameter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                        <span class="s2">&quot;segment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;yellow&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;diameter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                        <span class="s2">&quot;segment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;diameter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                        <span class="s2">&quot;segment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">}</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;number_light_segments&quot;</span><span class="p">:</span> <span class="mi">5</span>
+                <span class="p">}</span>
+<span class="n">End</span>
+
+<span class="n">Task</span> <span class="n">manufacture_light_segments</span>
+    <span class="n">In</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="c1">#parallel loop based on the field number_light_segments</span>
+    <span class="c1">#of the SWAP_Order structure</span>
+    <span class="n">Parallel</span> <span class="n">Loop</span> <span class="n">i</span> <span class="n">To</span> <span class="n">order</span><span class="o">.</span><span class="n">number_light_segments</span>
+        <span class="n">manufacture_light_segment</span>
+            <span class="n">In</span>
+                <span class="n">order</span>
+    <span class="c1">#counting loop based on the field number_light_segments</span>
+    <span class="c1">#of the SWAP_Order structure</span>
+    <span class="n">Loop</span> <span class="n">i</span> <span class="n">To</span> <span class="n">order</span><span class="o">.</span><span class="n">number_light_segments</span>
+        <span class="n">Gluing</span>
+            <span class="n">In</span>
+                <span class="n">ResourceAssignment</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;job_resource&quot;</span><span class="p">:</span><span class="s2">&quot;opc.tcp://host.docker.internal:4841&quot;</span>
+                <span class="p">}</span>
+                <span class="n">order</span>
+            <span class="n">Out</span>
+                <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+<span class="n">End</span>
+
+
+<span class="n">Task</span> <span class="n">manufacture_light_segment</span>
+    <span class="n">In</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="n">GetPartsFromWarehouse</span>
+        <span class="n">In</span>
+            <span class="n">ResourceAssignment</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;job_resource&quot;</span><span class="p">:</span><span class="s2">&quot;opc.tcp://host.docker.internal:4840&quot;</span>
+                <span class="p">}</span>
+            <span class="n">order</span>
+        <span class="n">Out</span>
+           <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="n">Coating</span>
+        <span class="n">In</span>
+            <span class="n">ResourceAssignment</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;job_resource&quot;</span><span class="p">:</span><span class="s2">&quot;opc.tcp://host.docker.internal:4842&quot;</span>
+                <span class="p">}</span>
+            <span class="n">order</span>
+        <span class="n">Out</span>
+            <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+<span class="n">End</span>
+</pre></div>
+</div>
+<p>The resulting visual representation of the process is shown below:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/intermediate.PNG"><img alt="Process Visualization Beginner" src="_images/intermediate.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+<section id="intermediate-building-resource-specific-information-models">
+<span id="id1"></span><h2>Intermediate: Building Resource-specific Information Models<a class="headerlink" href="#intermediate-building-resource-specific-information-models" title="Link to this heading"></a></h2>
+<p>The pre-build Nodeset2.xml files for each namespace in this tutorial can be found within the directory <a class="reference external" href="https://github.com/swap-it/demo-scenario/tree/main/Tutorials/intermediate/model">InformationModels</a>.
+However, if it is  planned to use the pre-build files, this section can be skipped and the tutorial continues with section <a class="reference internal" href="#intermediate-build-custom-opc-ua-servers">Intermediate Build custom OPC UA Servers</a>, however the following sections give a short introduction on how to
+define <a href="#id2"><span class="problematic" id="id3">*</span></a>.ModelDesign.xml files, which can then be processed with the <a class="reference external" href="https://github.com/OPCFoundation/UA-ModelCompiler">UA-ModelCompiler</a> to generate NodeSet2.xml files.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pfdl_namespace.html">PFDL Parameter Namespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="warehouse_namespace.html">Warehouse Namespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coating_namespace.html">Coating Namespace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gluing_namespace.html">Gluing Namespace</a></li>
+</ul>
+</div>
+</section>
+<section id="intermediate-build-custom-opc-ua-servers">
+<span id="id4"></span><h2>Intermediate: Build custom OPC UA Servers<a class="headerlink" href="#intermediate-build-custom-opc-ua-servers" title="Link to this heading"></a></h2>
+<p>To start several resource server from the same script, the following example uses a thread based server start. This is fine for a simulation purpose, however, when connecting the
+servers to real physical resources, it is recommended to implement each server in an individual application. The following gives a short introduction to such a thread based shop floor configuration.</p>
+<section id="intermediate-writing-a-json-configuration-file">
+<h3>Intermediate: Writing a JSON-configuration file<a class="headerlink" href="#intermediate-writing-a-json-configuration-file" title="Link to this heading"></a></h3>
+<p>Since three servers are used, the definition of a JSON-configuration file for each of the server is required.</p>
+<section id="warehouse-configuration">
+<h4>Warehouse Configuration<a class="headerlink" href="#warehouse-configuration" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nl">application_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;warehouse&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">resource_ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4840&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">module_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WarehouseModuleType&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">module_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WarehouseModule&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">service_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GetPartsFromWarehouse&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="coating-configuration">
+<h4>Coating Configuration<a class="headerlink" href="#coating-configuration" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nl">application_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;coating_dr1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">resource_ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4842&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">module_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CoatingModuleType&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">module_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;CoatingModule&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">service_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Coating&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="gluing-configuration">
+<h4>Gluing Configuration<a class="headerlink" href="#gluing-configuration" title="Link to this heading"></a></h4>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">   </span><span class="nl">application_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;gluing_dr1&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nl">resource_ip</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;localhost&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nl">port</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;4841&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nl">module_type</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GluingModuleType&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nl">module_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;GluingModule&quot;</span><span class="p">,</span>
+<span class="w">   </span><span class="nl">service_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Gluing&quot;</span>
+<span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="intermediate-cmake-configuration">
+<h3>Intermediate: CMake Configuration<a class="headerlink" href="#intermediate-cmake-configuration" title="Link to this heading"></a></h3>
+<p>Since all server application use the same installation of the open62541 OPC UA SDK, it is possible to extend the C-Make configuration, so that the
+nodeset-compiler creates c-code from all information models. Besides it is necessary to link the library that is required for the threads.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">cmake_minimum_required</span><span class="p">(</span><span class="n">VERSION</span><span class="w"> </span><span class="mf">3.0.0</span><span class="p">)</span>
+<span class="cp">#set name of the CMakeProject</span>
+<span class="n">project</span><span class="p">(</span><span class="n">intermediate_tutorial</span><span class="p">)</span>
+<span class="n">find_package</span><span class="p">(</span><span class="n">open62541</span><span class="w"> </span><span class="mf">1.3</span><span class="w"> </span><span class="n">REQUIRED</span><span class="p">)</span>
+<span class="k">if</span><span class="p">(</span><span class="n">NOT</span><span class="w"> </span><span class="n">CMAKE_PROJECT_NAME</span><span class="w"> </span><span class="n">STREQUAL</span><span class="w"> </span><span class="n">PROJECT_NAME</span><span class="p">)</span>
+<span class="w">    </span><span class="cp"># needed or cmake doesn&#39;t recognize dependencies of generated files</span>
+<span class="w">    </span><span class="n">set</span><span class="p">(</span><span class="n">PROJECT_BINARY_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">CMAKE_BINARY_DIR</span><span class="p">})</span>
+<span class="n">endif</span><span class="p">()</span>
+<span class="cp">#define the path to the directory in which the</span>
+<span class="n">set</span><span class="p">(</span><span class="n">PATH_TO_INFORMATION_MODELS</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">PROJECT_SOURCE_DIR</span><span class="p">}</span><span class="o">/</span><span class="n">model</span><span class="p">)</span>
+<span class="cp">#set output directory</span>
+<span class="n">set</span><span class="p">(</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="w"> </span><span class="s">&quot;${CMAKE_BINARY_DIR}/src_generated/&quot;</span><span class="p">)</span>
+<span class="n">include_directories</span><span class="p">(</span><span class="s">&quot;${GENERATE_OUTPUT_DIR}&quot;</span><span class="p">)</span>
+<span class="cp">#generate c code from the common model</span>
+<span class="n">ua_generate_nodeset_and_datatypes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NAME</span><span class="w"> </span><span class="s">&quot;common&quot;</span>
+<span class="w">        </span><span class="n">FILE_BSD</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Common.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">FILE_CSV</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/CommonModelDesign.csv&quot;</span>
+<span class="w">        </span><span class="n">FILE_NS</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Common.Model.NodeSet2.xml&quot;</span>
+<span class="w">        </span><span class="n">NAMESPACE_MAP</span><span class="w"> </span><span class="s">&quot;2:http://common.swap.fraunhofer.de&quot;</span>
+<span class="w">        </span><span class="n">OUTPUT_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="p">}</span>
+<span class="w">        </span><span class="n">INTERNAL</span>
+<span class="p">)</span>
+<span class="cp">#generate c code from the pfdl types model</span>
+<span class="n">ua_generate_nodeset_and_datatypes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NAME</span><span class="w"> </span><span class="s">&quot;pfdl_parameter&quot;</span>
+<span class="w">        </span><span class="n">FILE_BSD</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">FILE_CSV</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/DemoScenarioTypes.ModelDesign.csv&quot;</span>
+<span class="w">        </span><span class="n">FILE_NS</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Model.NodeSet2.xml&quot;</span>
+<span class="w">        </span><span class="n">NAMESPACE_MAP</span><span class="w"> </span><span class="s">&quot;3:http://swap.demo.scenario.fraunhofer.de&quot;</span>
+<span class="w">        </span><span class="n">OUTPUT_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="p">}</span>
+<span class="w">        </span><span class="n">INTERNAL</span>
+<span class="p">)</span>
+<span class="cp">#generate c code from the warehouse model and set the dependencies to the common and pfdl types models</span>
+<span class="n">ua_generate_nodeset_and_datatypes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NAME</span><span class="w"> </span><span class="s">&quot;warehouse&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;common&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;pfdl_parameter&quot;</span>
+<span class="w">        </span><span class="n">FILE_BSD</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Warehouse.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">FILE_CSV</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/DemoScenarioWarehouse.ModelDesign.csv&quot;</span>
+<span class="w">        </span><span class="n">FILE_NS</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Warehouse.Model.NodeSet2.xml&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_COMMON#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Common.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_PFDL_PARAMETER#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">NAMESPACE_MAP</span><span class="w"> </span><span class="s">&quot;4:http://swap.demo.scenario.warehouse.fraunhofer.de&quot;</span>
+<span class="w">        </span><span class="n">OUTPUT_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="p">}</span>
+<span class="w">        </span><span class="n">INTERNAL</span>
+<span class="p">)</span>
+
+<span class="n">ua_generate_nodeset_and_datatypes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NAME</span><span class="w"> </span><span class="s">&quot;coating&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;common&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;pfdl_parameter&quot;</span>
+<span class="w">        </span><span class="n">FILE_BSD</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Coating.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">FILE_CSV</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/DemoScenarioCoating.ModelDesign.csv&quot;</span>
+<span class="w">        </span><span class="n">FILE_NS</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Coating.Model.NodeSet2.xml&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_COMMON#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Common.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_PFDL_PARAMETER#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">NAMESPACE_MAP</span><span class="w"> </span><span class="s">&quot;4:http://swap.demo.scenario.coating.fraunhofer.de&quot;</span>
+<span class="w">        </span><span class="n">OUTPUT_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="p">}</span>
+<span class="w">        </span><span class="n">INTERNAL</span>
+<span class="p">)</span>
+
+<span class="n">ua_generate_nodeset_and_datatypes</span><span class="p">(</span>
+<span class="w">        </span><span class="n">NAME</span><span class="w"> </span><span class="s">&quot;gluing&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;common&quot;</span>
+<span class="w">        </span><span class="n">DEPENDS</span><span class="w"> </span><span class="s">&quot;pfdl_parameter&quot;</span>
+<span class="w">        </span><span class="n">FILE_BSD</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Gluing.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">FILE_CSV</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/DemoScenarioGluing.ModelDesign.csv&quot;</span>
+<span class="w">        </span><span class="n">FILE_NS</span><span class="w"> </span><span class="s">&quot;${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Gluing.Model.NodeSet2.xml&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_COMMON#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Common.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">IMPORT_BSD</span><span class="w"> </span><span class="s">&quot;TYPES_PFDL_PARAMETER#${PATH_TO_INFORMATION_MODELS}/SWAP.Fraunhofer.Demo.Scenario.Model.Types.bsd&quot;</span>
+<span class="w">        </span><span class="n">NAMESPACE_MAP</span><span class="w"> </span><span class="s">&quot;4:http://swap.demo.scenario.gluing.fraunhofer.de&quot;</span>
+<span class="w">        </span><span class="n">OUTPUT_DIR</span><span class="w"> </span><span class="n">$</span><span class="p">{</span><span class="n">GENERATE_OUTPUT_DIR</span><span class="p">}</span>
+<span class="w">        </span><span class="n">INTERNAL</span>
+<span class="p">)</span>
+
+<span class="cp">#adds the executable target</span>
+<span class="n">add_executable</span><span class="p">(</span><span class="n">intermediate_tutorial</span>
+<span class="w">        </span><span class="n">intermediate</span><span class="p">.</span><span class="n">c</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_NODESET_PFDL_PARAMETER_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_TYPES_PFDL_PARAMETER_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_NODESET_COMMON_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_TYPES_COMMON_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_NODESET_WAREHOUSE_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_TYPES_WAREHOUSE_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_NODESET_COATING_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_TYPES_COATING_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_NODESET_GLUING_SOURCES</span><span class="p">}</span>
+<span class="w">        </span><span class="n">$</span><span class="p">{</span><span class="n">UA_TYPES_GLUING_SOURCES</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="cp">#add the dependencies between the beginner tutorial and the generated namspaces</span>
+<span class="n">add_dependencies</span><span class="p">(</span><span class="n">intermediate_tutorial</span><span class="w">  </span><span class="n">open62541</span><span class="o">-</span><span class="n">generator</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="n">common</span>
+<span class="w">                                        </span><span class="n">open62541</span><span class="o">-</span><span class="n">generator</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="n">pfdl_parameter</span>
+<span class="w">                                        </span><span class="n">open62541</span><span class="o">-</span><span class="n">generator</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="n">warehouse</span>
+<span class="w">                                        </span><span class="n">open62541</span><span class="o">-</span><span class="n">generator</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="n">coating</span>
+<span class="w">                                        </span><span class="n">open62541</span><span class="o">-</span><span class="n">generator</span><span class="o">-</span><span class="n">ns</span><span class="o">-</span><span class="n">gluing</span>
+<span class="p">)</span>
+<span class="cp">#link the beginner tutorial project with the installed open62541 server template</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">intermediate_tutorial</span><span class="w"> </span><span class="n">swap_server_template</span><span class="p">)</span>
+<span class="cp">#link the beginner tutorial project with the installed open62541 SDK</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">intermediate_tutorial</span><span class="w"> </span><span class="n">open62541</span><span class="o">::</span><span class="n">open62541</span><span class="p">)</span>
+<span class="n">target_link_libraries</span><span class="p">(</span><span class="n">intermediate_tutorial</span><span class="w"> </span><span class="n">pthread</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="intermediate-build-server">
+<h3>Intermediate: Build Server<a class="headerlink" href="#intermediate-build-server" title="Link to this heading"></a></h3>
+<p>For the three servers, the open62541-server template is used and the first step is the definition of a method to load the corresponding JSON configuration files.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;signal.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;unistd.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;open62541/plugin/log_stdout.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;open62541/server.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;errno.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;pthread.h&gt;</span>
+<span class="c1">//include the open62541-server-template</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;swap_it.h&quot;</span>
+<span class="c1">//include the generated c code from the information models</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;namespace_common_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;namespace_pfdl_parameter_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;namespace_warehouse_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;types_common_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;types_common_generated_handling.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;types_pfdl_parameter_generated_handling.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;types_pfdl_parameter_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;warehouse_nodeids.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;coating_nodeids.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;gluing_nodeids.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;namespace_coating_generated.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;namespace_gluing_generated.h&quot;</span>
+
+<span class="c1">//read in the json config file</span>
+<span class="k">static</span><span class="w"> </span><span class="n">UA_INLINE</span><span class="w"> </span><span class="n">UA_ByteString</span>
+<span class="n">loadFile</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">path</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">UA_ByteString</span><span class="w"> </span><span class="n">fileContents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_STRING_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Open the file */</span>
+<span class="w">    </span><span class="kt">FILE</span><span class="w"> </span><span class="o">*</span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fopen</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;rb&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">fp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">errno</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="cm">/* We read errno also from the tcp layer... */</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">fileContents</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/* Get the file length, allocate the data and read */</span>
+<span class="w">    </span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_END</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fileContents</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">size_t</span><span class="p">)</span><span class="n">ftell</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">fileContents</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Byte</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">UA_malloc</span><span class="p">(</span><span class="n">fileContents</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_Byte</span><span class="p">));</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">fileContents</span><span class="p">.</span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">SEEK_SET</span><span class="p">);</span>
+<span class="w">        </span><span class="kt">size_t</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fread</span><span class="p">(</span><span class="n">fileContents</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_Byte</span><span class="p">),</span><span class="w"> </span><span class="n">fileContents</span><span class="p">.</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">read</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">fileContents</span><span class="p">.</span><span class="n">length</span><span class="p">)</span>
+<span class="w">            </span><span class="n">UA_ByteString_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">fileContents</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">fileContents</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">fileContents</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As next step, the callback functions for the GetPartsFromWarehouse, Gluing and Coating OPC UA methods are defined.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">UA_StatusCode</span><span class="w"> </span><span class="nf">gluingmethodCallback</span><span class="p">(</span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">,</span>
+<span class="w">                                  </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">sessionHandle</span><span class="p">,</span>
+<span class="w">                                  </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">methodId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">methodContext</span><span class="p">,</span>
+<span class="w">                                  </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">objectId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">objectContext</span><span class="p">,</span>
+<span class="w">                                  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">inputSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span>
+<span class="w">                                  </span><span class="kt">size_t</span><span class="w"> </span><span class="n">outputSize</span><span class="p">,</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">){</span>
+
+<span class="w">    </span><span class="c1">//set output variable for the Service finished event</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order</span><span class="w"> </span><span class="n">order</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">);</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">number_light_segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segmentsSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="p">));</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Stand_Segment</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Stand_Segment_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stand</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;plate&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">stand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">segments</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//print the specified parameter</span>
+<span class="w">    </span><span class="n">UA_String</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_STRING_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Order Variable: %.*s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">out</span><span class="p">.</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Variant</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Variant_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+<span class="w">    </span><span class="c1">//fire the service result event</span>
+<span class="w">    </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_NodeId_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_StatusCode</span><span class="w"> </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_Server_createEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">UA_GLUINGID_GLUING</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">retval</span><span class="o">!=</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">){</span>
+<span class="w">        </span><span class="n">UA_LOG_ERROR</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_USERLAND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to create the gluing Event&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">UA_NodeId_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">retval</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">UA_Server_writeObjectProperty_scalar</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span>
+<span class="w">                                         </span><span class="n">UA_QUALIFIEDNAME</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;order&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_Server_triggerEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NS0ID_SERVER</span><span class="p">),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">UA_TRUE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_NodeId_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">retval</span><span class="o">!=</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">){</span>
+<span class="w">        </span><span class="n">UA_LOG_ERROR</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_USERLAND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Failed to trigger the gluing Event&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">retval</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="p">{</span>
+<span class="w">        </span><span class="n">UA_LOG_INFO</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_USERLAND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Trigger the event&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">//create the ServiceExecutionAsyncResultDataType variable</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_UInt32</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Message&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">expectedServiceExecutionDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Double</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceTriggerResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_SERVICETRIGGERRESULT_SERVICE_RESULT_ACCEPTED</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//set the variable as method output</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_COMMON</span><span class="p">[</span><span class="n">UA_TYPES_COMMON_SERVICEEXECUTIONASYNCRESULTDATATYPE</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//free allocated memory</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">UA_StatusCode</span><span class="w"> </span><span class="nf">coatingmethodCallback</span><span class="p">(</span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">sessionHandle</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">methodId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">methodContext</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">objectId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">objectContext</span><span class="p">,</span>
+<span class="w">                                      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">inputSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span>
+<span class="w">                                      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">outputSize</span><span class="p">,</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">//set output variable for the Service finished event</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order</span><span class="w"> </span><span class="n">order</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">);</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">number_light_segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segmentsSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="p">));</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Stand_Segment</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Stand_Segment_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stand</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;plate&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">stand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">segments</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//print the specified parameter</span>
+<span class="w">    </span><span class="n">UA_String</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_STRING_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Order Variable: %.*s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">out</span><span class="p">.</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Variant</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Variant_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="c1">//fire the service result event</span>
+<span class="w">    </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_NodeId_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_createEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">UA_COATINGID_COATING</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_writeObjectProperty_scalar</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span>
+<span class="w">                                         </span><span class="n">UA_QUALIFIEDNAME</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;order&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">UA_LOG_INFO</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_USERLAND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Trigger the event&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_triggerEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NS0ID_SERVER</span><span class="p">),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">UA_TRUE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_NodeId_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//create the ServiceExecutionAsyncResultDataType variable</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_UInt32</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Message&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">expectedServiceExecutionDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Double</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceTriggerResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_SERVICETRIGGERRESULT_SERVICE_RESULT_ACCEPTED</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//set the variable as method output</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_COMMON</span><span class="p">[</span><span class="n">UA_TYPES_COMMON_SERVICEEXECUTIONASYNCRESULTDATATYPE</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//free allocated memory</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">UA_StatusCode</span><span class="w"> </span><span class="nf">warehousemethodCallback</span><span class="p">(</span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">sessionId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">sessionHandle</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">methodId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">methodContext</span><span class="p">,</span>
+<span class="w">                                      </span><span class="k">const</span><span class="w"> </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="o">*</span><span class="n">objectId</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">objectContext</span><span class="p">,</span>
+<span class="w">                                      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">inputSize</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">input</span><span class="p">,</span>
+<span class="w">                                      </span><span class="kt">size_t</span><span class="w"> </span><span class="n">outputSize</span><span class="p">,</span><span class="w"> </span><span class="n">UA_Variant</span><span class="w"> </span><span class="o">*</span><span class="n">output</span><span class="p">){</span>
+
+<span class="w">    </span><span class="c1">//set output variable for the Service finished event</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order</span><span class="w"> </span><span class="n">order</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_SWAP_Order_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">);</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">number_light_segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">order_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segmentsSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_Light_Segment</span><span class="p">));</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;red&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">diameter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;green&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">segments</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">segment_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Stand_Segment</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Stand_Segment_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">stand</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;plate&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stand</span><span class="p">.</span><span class="n">stand_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Default&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">stand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stand</span><span class="p">;</span>
+<span class="w">    </span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">segments</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//print the specified parameter</span>
+<span class="w">    </span><span class="n">UA_String</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_STRING_NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_print</span><span class="p">(</span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">],</span><span class="w"> </span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Order Variable: %.*s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">out</span><span class="p">.</span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">out</span><span class="p">.</span><span class="n">data</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">out</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">UA_Variant</span><span class="w"> </span><span class="n">temp</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Variant_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">temp</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="c1">//fire the service result event</span>
+<span class="w">    </span><span class="n">UA_NodeId</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_NodeId_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_createEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">UA_WAREHOUSEID_GETPARTSFROMWAREHOUSE</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_LOG_INFO</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_USERLAND</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Trigger the event&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_writeObjectProperty_scalar</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span>
+<span class="w">                                         </span><span class="n">UA_QUALIFIEDNAME</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;order&quot;</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">order</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_PFDL_PARAMETER</span><span class="p">[</span><span class="n">UA_TYPES_PFDL_PARAMETER_SWAP_ORDER</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">UA_Server_triggerEvent</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">eventOutNodeId</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NODEID_NUMERIC</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">UA_NS0ID_SERVER</span><span class="p">),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">UA_TRUE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_NodeId_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">eventOutNodeId</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">//create the ServiceExecutionAsyncResultDataType variable</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_ServiceExecutionAsyncResultDataType_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_UInt32</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_String_fromChars</span><span class="p">(</span><span class="s">&quot;Message&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">expectedServiceExecutionDuration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UA_Double</span><span class="p">)</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">res</span><span class="p">.</span><span class="n">serviceTriggerResult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_SERVICETRIGGERRESULT_SERVICE_RESULT_ACCEPTED</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">//set the variable as method output</span>
+<span class="w">    </span><span class="n">UA_Variant_setScalarCopy</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UA_TYPES_COMMON</span><span class="p">[</span><span class="n">UA_TYPES_COMMON_SERVICEEXECUTIONASYNCRESULTDATATYPE</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">UA_String_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">res</span><span class="p">.</span><span class="n">serviceResultMessage</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">//free allocated memory</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="n">segments</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Next, two structures are defined from which each server configuration will be handed over to the corresponding server thread.
+The structure server_info contains the path to the JSON configuration file and the method callback of the corresponding server. Since a generic function for the
+server start inside each thread is used, it is not possible to preset the function with which the namespaces are loaded. To solve this problem, a list of pointers to
+the corresponding load namespace functions is provided (* load_namespace). The index of the corresponding function is stored within the server_info structure. Lastly, the structure
+server_dict contains a list with all server configurations, so that all threads can be started from a loop over the server_dict.number_server variable.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">UA_StatusCode</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">load_namespace</span><span class="p">[])(</span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">namespace_pfdl_parameter_generated</span><span class="p">,</span>
+<span class="w">    </span><span class="n">namespace_warehouse_generated</span><span class="p">,</span>
+<span class="w">    </span><span class="n">namespace_coating_generated</span><span class="p">,</span>
+<span class="w">    </span><span class="n">namespace_gluing_generated</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">path_to_config</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">namespace_position</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Boolean</span><span class="w"> </span><span class="o">*</span><span class="n">running</span><span class="p">;</span>
+<span class="w">    </span><span class="n">pthread_t</span><span class="w"> </span><span class="n">threadId</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_MethodCallback</span><span class="w"> </span><span class="n">methodcallback</span><span class="p">;</span>
+<span class="p">}</span><span class="n">server_info</span><span class="p">;</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="p">{</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">number_server</span><span class="p">;</span>
+<span class="w">    </span><span class="n">server_info</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="p">;</span>
+<span class="p">}</span><span class="n">server_dict</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the next step, the generic start_server function is defined, which is executed within each server thread and starts the corresponding OPC UA server.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="nf">start_server</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">){</span>
+<span class="w">    </span><span class="n">server_info</span><span class="w"> </span><span class="o">*</span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">server_info</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">    </span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UA_Server_new</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/*load the common namespace*/</span>
+<span class="w">    </span><span class="n">UA_StatusCode</span><span class="w"> </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">namespace_common_generated</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">retval</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UA_LOG_WARNING</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_SERVER</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Adding the common namespace failed. Please check previous error output.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">UA_Server_delete</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/*load the patient zero types namespace*/</span>
+<span class="w">    </span><span class="n">UA_StatusCode</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="n">import_namespace</span><span class="p">)(</span><span class="n">UA_Server</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">)</span><span class="o">=</span><span class="w"> </span><span class="n">load_namespace</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="w">    </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">import_namespace</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">retval</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UA_LOG_ERROR</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_SERVER</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Adding the pfdl_parameter namespace failed. Please check previous error output.&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="n">UA_Server_delete</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/*load the server specific namespace*/</span>
+<span class="w">    </span><span class="n">import_namespace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">load_namespace</span><span class="p">[</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">namespace_position</span><span class="p">];</span>
+<span class="w">    </span><span class="n">retval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">import_namespace</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">retval</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">UA_STATUSCODE_GOOD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UA_LOG_ERROR</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_SERVER</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Adding the namespace on pos %zu in the load_namespace function failed. Please check previous error output.&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">namespace_position</span><span class="p">);</span>
+<span class="w">        </span><span class="n">UA_Server_delete</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/*load the corresponding server config*/</span>
+<span class="w">    </span><span class="n">UA_ByteString</span><span class="w"> </span><span class="n">json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loadFile</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">path_to_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_service_server_interpreter</span><span class="w"> </span><span class="n">swap_server</span><span class="p">;</span>
+<span class="w">    </span><span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">swap_server</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">UA_service_server_interpreter</span><span class="p">));</span>
+<span class="w">    </span><span class="cm">/* instantiate the resource specific subtype of the ModuleType*/</span>
+<span class="w">    </span><span class="n">UA_server_swap_it</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="n">json</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">methodcallback</span><span class="p">,</span><span class="w"> </span><span class="n">UA_FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">running</span><span class="p">,</span><span class="w"> </span><span class="n">UA_FALSE</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">swap_server</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_ByteString_clear</span><span class="p">(</span><span class="o">&amp;</span><span class="n">json</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/*start the server*/</span>
+<span class="w">    </span><span class="n">UA_Server_run_startup</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">info</span><span class="o">-&gt;</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UA_Server_run_iterate</span><span class="p">(</span><span class="n">server</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">//clear memory</span>
+<span class="w">    </span><span class="n">clear_swap_server</span><span class="p">(</span><span class="o">&amp;</span><span class="n">swap_server</span><span class="p">,</span><span class="w"> </span><span class="n">UA_FALSE</span><span class="p">,</span><span class="w"> </span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/*Shut down the server*/</span>
+<span class="w">    </span><span class="n">UA_LOG_INFO</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_SERVER</span><span class="p">,</span><span class="s">&quot;Shutting down server %s &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">swap_server</span><span class="p">.</span><span class="n">server_name</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_run_shutdown</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+<span class="w">    </span><span class="n">UA_Server_delete</span><span class="p">(</span><span class="n">server</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">pthread_exit</span><span class="p">((</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">info</span><span class="o">-&gt;</span><span class="n">threadId</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, it is possible to define the main function from which all treads are started.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">UA_Boolean</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">stopHandler</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sign</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">UA_LOG_INFO</span><span class="p">(</span><span class="n">UA_Log_Stdout</span><span class="p">,</span><span class="w"> </span><span class="n">UA_LOGCATEGORY_SERVER</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;received ctrl-c&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGINT</span><span class="p">,</span><span class="w"> </span><span class="n">stopHandler</span><span class="p">);</span>
+<span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">SIGTERM</span><span class="p">,</span><span class="w"> </span><span class="n">stopHandler</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* create the server structure*/</span>
+<span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nbr_resources</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">server_dict</span><span class="w"> </span><span class="n">resources</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">number_server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nbr_resources</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">server_info</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="n">nbr_resources</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">server_info</span><span class="p">));</span>
+<span class="w">    </span><span class="cm">/*configure the warehouse server*/</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path_to_warehouse_1_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../configs/warehouse_config.json5&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">path_to_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">path_to_warehouse_1_config</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">));</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">path_to_config</span><span class="p">,</span><span class="w"> </span><span class="n">path_to_warehouse_1_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">running</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">namespace_position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">methodcallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">warehousemethodCallback</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/*configure the coating server*/</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path_to_coating_1_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../configs/coating_config.json5&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">path_to_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">path_to_coating_1_config</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">));</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">path_to_config</span><span class="p">,</span><span class="w"> </span><span class="n">path_to_coating_1_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">running</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">namespace_position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">methodcallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">coatingmethodCallback</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/*configure the gluing server*/</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">path_to_gluing_1_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;../configs/gluing_config.json5&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">path_to_config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">UA_calloc</span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">path_to_gluing_1_config</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">));</span>
+<span class="w">    </span><span class="n">strcpy</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">path_to_config</span><span class="p">,</span><span class="w"> </span><span class="n">path_to_gluing_1_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">running</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">namespace_position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">methodcallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gluingmethodCallback</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/*start the server threads*/</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">resources</span><span class="p">.</span><span class="n">number_server</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">pthread_create</span><span class="p">(</span><span class="o">&amp;</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">threadId</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">start_server</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kt">size_t</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">resources</span><span class="p">.</span><span class="n">number_server</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="n">free</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">path_to_config</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">resources</span><span class="p">.</span><span class="n">server</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="intermediate-build-the-server-executable">
+<h3>Intermediate: Build the Server Executable<a class="headerlink" href="#intermediate-build-the-server-executable" title="Link to this heading"></a></h3>
+<p>After the code is completed, it is now possible to compile the server executable. For this to be achieved, create a build directory within the working directory and compile the server with the cmake and make command.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span><span class="w"> </span><span class="n">working</span><span class="w"> </span><span class="n">directory</span>
+<span class="n">mkdir</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">build</span>
+<span class="n">cmake</span><span class="w"> </span><span class="p">..</span>
+<span class="n">make</span>
+<span class="cm">/*start the executable*/</span>
+<span class="p">.</span><span class="o">/</span><span class="n">intermediate_tutorial</span>
+</pre></div>
+</div>
+<p>In case that the shop floor should be started from the tutorial implementation, execute the following steps:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/swap-it/demo-scenario.git</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">demo</span><span class="o">-</span><span class="n">scenario</span><span class="o">/</span><span class="n">Tutorials</span><span class="o">/</span><span class="n">intermediate</span>
+<span class="n">mkdir</span><span class="w"> </span><span class="n">build</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">cd</span><span class="w"> </span><span class="n">build</span>
+<span class="n">cmake</span><span class="w"> </span><span class="p">..</span>
+<span class="n">make</span>
+<span class="cm">/*start the executable*/</span>
+<span class="p">.</span><span class="o">/</span><span class="n">intermediate_tutorial</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="intermediate-execute-the-pfdl-with-a-process-agent">
+<h2>Intermediate: Execute the PFDL with a Process Agent<a class="headerlink" href="#intermediate-execute-the-pfdl-with-a-process-agent" title="Link to this heading"></a></h2>
+<p>Since the code basis of the process agent in not available yet, we provide a docker compose file which starts the missing application, in fact the process agent and the dashboard, in a docker compose project. A corresponding
+Docker-compose.yaml file is provided in the <a class="reference external" href="https://github.com/swap-it/demo-scenario/tree/main/Tutorials/beginner">intermediate directory</a>.
+This docker application can be started with the following steps, so that the beginner tutorial PFDL and the corresponding process is executed on the resource, which is implemented in this tutorial:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">clone</span><span class="w"> </span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com/swap-it/demo-scenario.git</span>
+<span class="n">cd</span><span class="w"> </span><span class="n">demo</span><span class="o">-</span><span class="n">scenario</span><span class="o">/</span><span class="n">Tutorials</span><span class="o">/</span><span class="n">intermediate</span>
+<span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="w"> </span><span class="n">up</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="beginner.html" class="btn btn-neutral float-left" title="Beginner" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="advanced.html" class="btn btn-neutral float-right" title="Advanced" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Fraunhofer IOSB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

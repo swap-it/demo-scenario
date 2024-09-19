@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demonstration Scenario Application &mdash; SWAP-IT Demonstration Scenario 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=8d563738"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PFDL Parameter Namespace" href="pfdl_namespace.html" />
+    <link rel="prev" title="SWAP-IT Demonstration Scenario" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SWAP-IT Demonstration Scenario
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Demonstration Scenario Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#production-of-industrial-traffic-lights">Production of Industrial Traffic Lights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#shop-floor-configuration">Shop Floor Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#information-models">Information Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pfdl_namespace.html">PFDL Parameter Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="warehouse_namespace.html">Warehouse Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coating_namespace.html">Coating Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="milling_namespace.html">Milling Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gluing_namespace.html">Gluing Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mounting_namespace.html">Mounting Namespace</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="swpa_it_sw.html">SWAP-IT Software Modules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how_to.html">How-To-Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="related_projects.html">Related-Projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SWAP-IT Demonstration Scenario</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Demonstration Scenario Application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toctree-wrapper compound">
+</div>
+<section id="demonstration-scenario-application">
+<span id="demonstration"></span><h1>Demonstration Scenario Application<a class="headerlink" href="#demonstration-scenario-application" title="Link to this heading"></a></h1>
+<section id="production-of-industrial-traffic-lights">
+<span id="demonstration-scenario-process"></span><h2>Production of Industrial Traffic Lights<a class="headerlink" href="#production-of-industrial-traffic-lights" title="Link to this heading"></a></h2>
+<p>Demonstration Scenario executes a process that produces an industrial traffic light in a simulated environment. In this context, the user can configure the composition of lights and the number of light segments.
+Besides, the user can choose between multiple shapes for the stand segment of the traffic light.
+The corresponding PFDL description is shown below, were the structure SWAP_Order defines the properties of a traffic light.
+The overall process is split into 5 steps and contains two parallel subprocesses, the Manufacture Light Segments and the Manufacture Stand Segment process. After completion, the parts that are produced within the subprocesses are mounted together in step 5:</p>
+<ul>
+<li><p>Manufacture Light Segments:</p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="arabic simple">
+<li><p>GetPartsFromWarehouse: one or multiple light segments are taken from the warehouse and brought to the coating machine</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="2">
+<li><p>Coating: the light segment gets painted in the selected color</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="3">
+<li><p>Gluing: all light segments are glued together</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Manufacture Stand Segment:</p>
+<blockquote>
+<div><ul class="simple">
+<li><ol class="arabic simple">
+<li><p>GetPartsFromWarehouse: a stand segment is taken from the warehouse and brought to the coating machine</p></li>
+</ol>
+</li>
+<li><ol class="arabic simple" start="4">
+<li><p>Milling: milling of the stand segment into the selected shape</p></li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><ol class="arabic simple" start="5">
+<li><p>Mounting: mounting of the light segments onto the stand segment</p></li>
+</ol>
+</li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Task</span> <span class="n">productionTask</span>
+    <span class="n">Parallel</span>
+        <span class="n">manufacture_light_segments</span>
+            <span class="n">In</span>
+                <span class="n">SWAP_Order</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;order_id&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+                    <span class="s2">&quot;stand&quot;</span><span class="p">:{</span>
+                        <span class="s2">&quot;stand_shape&quot;</span><span class="p">:</span><span class="s2">&quot;plate&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;stand_height&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                        <span class="s2">&quot;stand_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">},</span>
+                    <span class="s2">&quot;segments&quot;</span><span class="p">:</span>
+                    <span class="p">[</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;diameter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                        <span class="s2">&quot;segment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                    <span class="p">}</span>
+                    <span class="p">],</span>
+                    <span class="s2">&quot;number_light_segments&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                <span class="p">}</span>
+        <span class="n">manufacture_stand_segment</span>
+            <span class="n">In</span>
+                <span class="n">SWAP_Order</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;order_id&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span>
+                        <span class="s2">&quot;stand&quot;</span><span class="p">:{</span>
+                            <span class="s2">&quot;stand_shape&quot;</span><span class="p">:</span><span class="s2">&quot;plate&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;stand_height&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                            <span class="s2">&quot;stand_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                        <span class="p">},</span>
+                        <span class="s2">&quot;segments&quot;</span><span class="p">:</span>
+                        <span class="p">[</span>
+                        <span class="p">{</span>
+                            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;diameter&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+                            <span class="s2">&quot;segment_id&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span>
+                        <span class="p">}</span>
+                        <span class="p">],</span>
+                        <span class="s2">&quot;number_light_segments&quot;</span><span class="p">:</span> <span class="mi">1</span>
+                    <span class="p">}</span>
+    <span class="n">Mounting</span>
+<span class="n">End</span>
+
+<span class="n">Task</span> <span class="n">manufacture_light_segments</span>
+    <span class="n">In</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="n">Parallel</span> <span class="n">Loop</span> <span class="n">i</span> <span class="n">To</span> <span class="n">order</span><span class="o">.</span><span class="n">number_light_segments</span>
+        <span class="n">manufacture_light_segment</span>
+            <span class="n">In</span>
+                <span class="n">order</span>
+    <span class="n">Loop</span> <span class="n">i</span> <span class="n">To</span> <span class="n">order</span><span class="o">.</span><span class="n">number_light_segments</span>
+        <span class="n">Gluing</span>
+            <span class="n">In</span>
+                <span class="n">order</span>
+<span class="n">End</span>
+
+<span class="n">Task</span> <span class="n">manufacture_stand_segment</span>
+    <span class="n">In</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="n">GetPartsFromWarehouse</span>
+        <span class="n">In</span>
+            <span class="n">order</span>
+    <span class="n">Milling</span>
+        <span class="n">In</span>
+            <span class="n">order</span>
+<span class="n">End</span>
+
+<span class="n">Task</span> <span class="n">manufacture_light_segment</span>
+    <span class="n">In</span>
+        <span class="n">order</span><span class="p">:</span> <span class="n">SWAP_Order</span>
+    <span class="n">GetPartsFromWarehouse</span>
+        <span class="n">In</span>
+            <span class="n">order</span>
+    <span class="n">Coating</span>
+        <span class="n">In</span>
+            <span class="n">order</span>
+<span class="n">End</span>
+</pre></div>
+</div>
+<p>The corresponding visual representation, generated by the <a class="reference internal" href="swpa_it_sw.html#swap-it-dashboard"><span class="std std-ref">SWAP-IT Dashboard</span></a> is illustrated below. The PFDL definition contains a set of PFDL conditions, namely a <em>Parallel Condition</em>, a <em>Parallel Loop Condition</em> and a <em>Counting Loop</em>. These
+conditions are based on process parameters, in this context, the <em>SWAP_Order.number_light_segments</em> parameter. Consequently,
+changing this value will result in a different process, since the number of process steps in the <em>Parallel Loop Condition</em> and the <em>Counting Loop</em> will increase or decrease.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/petri_net.PNG"><img alt="Process Visualization" src="_images/petri_net.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+<section id="shop-floor-configuration">
+<h2>Shop Floor Configuration<a class="headerlink" href="#shop-floor-configuration" title="Link to this heading"></a></h2>
+<p>To produce the industrial traffic light, a corresponding shop floor with resources is required. For this scenario, the shop floor consists of</p>
+<ul class="simple">
+<li><p>2 Warehouses</p></li>
+<li><p>3 Coating Machines</p></li>
+<li><p>1 Milling Machine</p></li>
+<li><p>1 Gluing Machine</p></li>
+<li><p>1 Assembly Station</p></li>
+</ul>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/shopfloor.PNG"><img alt="Example Shop Floor" src="_images/shopfloor.PNG" style="width: 100%;" /></a>
+</figure>
+</section>
+<section id="information-models">
+<h2>Information Models<a class="headerlink" href="#information-models" title="Link to this heading"></a></h2>
+<p>Since the Demonstration Scenario shop floor includes 5 different types of resources, it is required to define corresponding information models. These models
+extend the Common Information Model for each of the resource classes. More information on how to build these custom information models can be found in the <a class="reference external" href="https://github.com/FraunhoferIOSB/swap-it-common-information-model">Common Information Model Repository</a>.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="_images/ModuleTypeInstantiation.PNG"><img alt="Instantiation of the Module Type" src="_images/ModuleTypeInstantiation.PNG" style="width: 100%;" /></a>
+</figure>
+<p>In this context, it is required that the browse name of the added OPC UA methods correspond to service names in the
+PFDL description. The advanced tutorial in the Demonstration Scenario repository recreates the Demonstration Scenario environment, so that all information models for the Demonstration Scenario application
+can be found in this <a class="reference external" href="https://github.com/swap-it/demo-scenario/tree/main/Tutorials/advanced/models">Tutorial</a>.</p>
+<p>The following SubTypes of the ModuleType are defined for the Demonstration Scenario application:</p>
+<ul class="simple">
+<li><p>Information model containing the PFDL parameter:</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pfdl_namespace.html">PFDL Parameter Namespace</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>WarehouseModuleType with the method GetPartsFromWarehouse</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="warehouse_namespace.html">Warehouse Namespace</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>CoatingModuleType with the method Coating</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="coating_namespace.html">Coating Namespace</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>MillingModuleType with the method Milling</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="milling_namespace.html">Milling Namespace</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>GluingModuleType with the method Gluing</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gluing_namespace.html">Gluing Namespace</a></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>MountingModuleType with the method Mounting</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mounting_namespace.html">Mounting Namespace</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="SWAP-IT Demonstration Scenario" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pfdl_namespace.html" class="btn btn-neutral float-right" title="PFDL Parameter Namespace" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023-2024, Fraunhofer IOSB.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
