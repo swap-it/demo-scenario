@@ -17,6 +17,13 @@ found in the following sections of this documentation.
 
 ## Documentation 
 An extensive introduction into SWAP-IT and its software modules can be found in the documentation (https://swap-it.github.io/demo-scenario/).
+The documentation can also be build from the repository:
+
+    cd demo-scenario
+    #html
+    sphinx-build -M html documentation/source/ documentation/build/html
+    #pdf
+    sphinx-build -b pdf documentation/source/ documentation/build/pdf/
 
 ## SWAP-IT Architecture
 
@@ -126,7 +133,7 @@ At least the following build flags are required for the open62541 OPC UA SDK:
 for the open62541 SDK is required.
 
 ## Related Projects
-Since the SWAP-IT Regitry Module is part of the SWAP-IT Architecture, its application is linked to other SWAP-IT projects. Here are some other relevant repositories:
+Since the SWAP-IT Registry Module is part of the SWAP-IT Architecture, its application is linked to other SWAP-IT projects. Here are some other relevant repositories:
 
 - SWAP-IT Registry Module: https://github.com/FraunhoferIOSB/swap-it-registry-module
 - SWAP-IT open62541 server-template: https://github.com/FraunhoferIOSB/swap-it-open62541-server-template
@@ -154,11 +161,3 @@ Since the SWAP-IT Regitry Module is part of the SWAP-IT Architecture, its applic
 To build the documentation, sphinx and the sphinx rtd theme are required. Both can be installed with:
 
     sphinx sphinx-rtd-theme myst_parser rst2pdf
-
-Build the documentation:
-
-    cd demo-scenario
-    #html
-    sphinx-build -M html documentation/source/ documentation/build/html
-    #pdf
-    sphinx-build -b pdf documentation/source/ documentation/build/pdf/

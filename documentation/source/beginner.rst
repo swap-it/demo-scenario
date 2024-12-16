@@ -346,7 +346,7 @@ server can be instantiated with the open62541 swap server template's function UA
                                                  "  service_name: \"GetPartsFromWarehouse\",\n"
                                                  "}"); /*loadFile(path_to_config);*/
         /* the structure UA_service_server_interpreter will return the pre-defined information about the server
-         * from the json configration*/
+         * from the json configuration*/
         UA_service_server_interpreter swap_server;
         memset(&swap_server, 0, sizeof(UA_service_server_interpreter));
         /* with the function UA_server_swap_it from the open62541 server template,
