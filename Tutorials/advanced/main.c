@@ -103,8 +103,9 @@ void *start_server(void *data){
     UA_ByteString json = loadFile(info->path_to_config);
     UA_service_server_interpreter swap_server;
     memset(&swap_server, 0, sizeof(UA_service_server_interpreter));
-
-    retval = UA_server_swap_it(server, json, info->methodcallback, UA_FALSE, &running, UA_TRUE, &swap_server);
+    UA_Queue_Data queue_data;
+    memset(&queue_data, 0, sizeof(UA_Queue_Data));
+    retval = UA_server_swap_it(server, json, info->methodcallback, UA_FALSE, &running, UA_TRUE, &swap_server, &queue_data);
     /*UA_Server_run_startup(server);
     UA_Server_run_iterate(server, true);*/
     if(retval != UA_STATUSCODE_GOOD){
@@ -118,7 +119,7 @@ void *start_server(void *data){
         }
         UA_LOG_INFO(UA_Log_Stdout, UA_LOGCATEGORY_SERVER,"Shutting down server %s ", swap_server.server_name);
         /*unregister the agent and clear the config information*/
-        clear_swap_server(&swap_server, UA_TRUE, server);
+        clear_swap_server(&swap_server, UA_TRUE, server, &queue_data);
         UA_Server_run_shutdown(server);
         UA_Server_delete(server);
         pthread_exit((void *) info->threadId);
@@ -190,8 +191,9 @@ int main() {
     resources.server[7].methodcallback = coatingmethodCallback;
 
     printf("start the threads\n");
-    for(size_t i=0; i<resources.number_server; i++){
+    for(size_t i=0; i< resources.number_server; i++){
         pthread_create(&resources.server[i].threadId, NULL, start_server, &resources.server[i]);
+        sleep(2);
     }
 
     while(running) {
